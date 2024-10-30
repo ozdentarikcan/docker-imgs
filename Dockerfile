@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:23.09-py3
+FROM anibali/pytorch:2.0.1-cuda11.8
 
 USER root
 RUN apt-get update
