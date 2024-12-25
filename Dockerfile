@@ -2,7 +2,7 @@ FROM pytorch/pytorch:2.5.1-cuda12.1-cudnn9-runtime
 
 USER root
 RUN apt-get update
-RUN apt-get install openssh-server sudo -y
+RUN apt-get install openssh-server sudo curl -y
 ARG PORT=65142
 
 # change port and allow root login
