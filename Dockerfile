@@ -17,8 +17,8 @@ RUN service ssh start
 # init conda env
 RUN curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 RUN bash Miniforge3-$(uname)-$(uname -m).sh
-RUN conda init
-RUN conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+RUN mamba init
+RUN mamba install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 RUN pip install -q lightning click transformers goatools toml wget fastobo pydantic loguru
 
 EXPOSE ${PORT}
