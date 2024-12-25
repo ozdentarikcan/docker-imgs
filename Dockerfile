@@ -16,6 +16,8 @@ RUN service ssh start
 
 # init conda env
 RUN conda init
+RUN conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+RUN pip install -q lightning click transformers goatools toml wget fastobo pydantic loguru
 
 EXPOSE ${PORT}
 
