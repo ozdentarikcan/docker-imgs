@@ -1,4 +1,4 @@
-FROM anibali/pytorch:2.0.1-cuda11.8
+FROM pytorch/pytorch:2.5.1-cuda12.1-cudnn9-runtime
 
 USER root
 RUN apt-get update
@@ -15,6 +15,8 @@ RUN ssh-keygen -A
 RUN service ssh start
 
 # init conda env
+RUN curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+RUN bash Miniforge3-$(uname)-$(uname -m).sh
 RUN conda init
 RUN conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 RUN pip install -q lightning click transformers goatools toml wget fastobo pydantic loguru
