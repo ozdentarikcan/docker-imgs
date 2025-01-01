@@ -19,7 +19,9 @@ RUN curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/downloa
 RUN bash Miniforge3-$(uname)-$(uname -m).sh -b -f
 RUN mamba init
 RUN mamba install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
-RUN pip install --no-cache-dir -q lightning click transformers goatools toml wget fastobo pydantic loguru wandb tqdm einops wandb obonet fastobo h5py seaborn scikit-learn
+RUN pip install --no-cache-dir -q lightning click transformers goatools toml wget fastobo pydantic loguru wandb tqdm einops wandb obonet fastobo h5py seaborn scikit-learn pydantic
+
+RUN apt-get install git -y
 
 EXPOSE ${PORT}
 
