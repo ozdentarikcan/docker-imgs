@@ -1,13 +1,16 @@
 FROM tensorflow/tensorflow:2.4.1-gpu
 
 USER root
-RUN apt-get update
+
+# Add NVIDIA repository keys and update
+RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub && \
+  apt-get update
+
 RUN apt-get install openssh-server sudo curl tmux -y
 ARG PORT=65142
 
 # change port and allow root login
 RUN echo "Port ${PORT}" >> /etc/ssh/sshd_config
-# RUN echo "LogLevel DEBUG3" >> /etc/ssh/sshd_config
 
 RUN mkdir -p /run/sshd
 RUN ssh-keygen -A
