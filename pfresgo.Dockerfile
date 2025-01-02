@@ -20,8 +20,12 @@ RUN service ssh start
 # init conda env
 RUN curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 RUN bash Miniforge3-$(uname)-$(uname -m).sh -b -f
-RUN mamba init
-RUN mamba install numpy -y
+# Add conda to PATH and initialize
+ENV PATH="/root/miniforge3/bin:$PATH"
+RUN conda init bash && \
+  . /root/.bashrc && \
+  mamba init && \
+  mamba install numpy -y
 RUN pip install --no-cache-dir -q lightning click transformers goatools toml wget fastobo pydantic loguru wandb tqdm einops wandb obonet fastobo h5py seaborn scikit-learn pydantic
 
 RUN apt-get install git -y
