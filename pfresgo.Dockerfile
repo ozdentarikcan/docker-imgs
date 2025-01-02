@@ -6,7 +6,7 @@ USER root
 RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub && \
   apt-get update
 
-RUN apt-get install openssh-server sudo curl tmux -y
+RUN apt-get install openssh-server sudo curl tmux git -y
 ARG PORT=65142
 
 # change port and allow root login
@@ -18,17 +18,15 @@ RUN ssh-keygen -A
 RUN service ssh start
 
 # init conda env
-RUN curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
-RUN bash Miniforge3-$(uname)-$(uname -m).sh -b -f
+# RUN curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+# RUN bash Miniforge3-$(uname)-$(uname -m).sh -b -f
 # Add conda to PATH and initialize
-ENV PATH="/root/miniforge3/bin:$PATH"
-RUN conda init bash && \
-  . /root/.bashrc && \
-  mamba init && \
-  mamba install numpy -y
+# ENV PATH="/root/miniforge3/bin:$PATH"
+# RUN conda init bash && \
+#   . /root/.bashrc && \
+#   mamba init && \
+#   mamba install numpy -y
 RUN pip install --no-cache-dir -q lightning click transformers goatools toml wget fastobo pydantic loguru wandb tqdm einops wandb obonet fastobo h5py seaborn scikit-learn pydantic
-
-RUN apt-get install git -y
 
 EXPOSE ${PORT}
 
