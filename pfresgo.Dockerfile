@@ -26,6 +26,7 @@ RUN service ssh start
 #   . /root/.bashrc && \
 #   mamba init && \
 #   mamba install numpy -y
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -q lightning click transformers goatools toml wget fastobo pydantic loguru wandb tqdm einops wandb obonet fastobo h5py seaborn scikit-learn pydantic
 
 EXPOSE ${PORT}
