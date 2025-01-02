@@ -2,7 +2,7 @@ FROM pytorch/pytorch:2.5.1-cuda12.1-cudnn9-runtime
 
 USER root
 RUN apt-get update
-RUN apt-get install openssh-server sudo curl tmux -y
+RUN apt-get install openssh-server sudo curl tmux git -y
 ARG PORT=65142
 
 # change port and allow root login
@@ -20,8 +20,6 @@ RUN bash Miniforge3-$(uname)-$(uname -m).sh -b -f
 RUN mamba init
 RUN mamba install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 RUN pip install --no-cache-dir -q lightning click transformers goatools toml wget fastobo pydantic loguru wandb tqdm einops wandb obonet fastobo h5py seaborn scikit-learn pydantic
-
-RUN apt-get install git -y
 
 EXPOSE ${PORT}
 
