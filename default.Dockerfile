@@ -46,7 +46,9 @@ RUN pip install --no-cache-dir -q \
   h5py \
   seaborn \
   scikit-learn \
-  ipython
+  ipython \
+  sentencepiece \
+  sentence-transformers
 
 EXPOSE ${PORT}
 
