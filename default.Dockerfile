@@ -1,7 +1,10 @@
 FROM pytorch/pytorch:2.5.1-cuda12.1-cudnn9-runtime
 
 USER root
-RUN mkdir -p /run/sshd && \
+RUN apt-get update && \
+  apt-get install -y --no-install-recommends openssh-server && \
+  rm -rf /var/lib/apt/lists/* && \
+  mkdir -p /run/sshd && \
   ssh-keygen -A
 
 ARG PORT=65142
@@ -9,7 +12,6 @@ RUN echo "Port ${PORT}" >> /etc/ssh/sshd_config
 
 RUN apt-get update && \
   apt-get install -y --no-install-recommends \
-  openssh-server \
   sudo \
   curl \
   tmux \
@@ -34,19 +36,16 @@ RUN pip install --no-cache-dir -q \
   goatools \
   toml \
   wget \
-  fastobo \
   pydantic \
   loguru \
   wandb \
   tqdm \
   einops \
-  wandb \
   obonet \
   fastobo \
   h5py \
   seaborn \
   scikit-learn \
-  pydantic \
   ipython
 
 EXPOSE ${PORT}
