@@ -7,7 +7,7 @@ RUN apt-get update && \
   mkdir -p /run/sshd && \
   ssh-keygen -A
 
-ARG PORT=65142
+ARG PORT=65144
 RUN echo "Port ${PORT}" >> /etc/ssh/sshd_config
 
 RUN apt-get update && \
