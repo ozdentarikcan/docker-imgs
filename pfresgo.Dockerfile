@@ -7,7 +7,7 @@ RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/
   apt-get update
 
 RUN apt-get install openssh-server sudo curl tmux git -y
-ARG PORT=65142
+ARG PORT=65144
 
 # change port and allow root login
 RUN echo "Port ${PORT}" >> /etc/ssh/sshd_config
