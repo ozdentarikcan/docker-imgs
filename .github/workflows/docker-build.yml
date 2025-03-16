@@ -37,9 +37,9 @@ jobs:
           # Extract basename without .Dockerfile extension
           BASENAME=$(basename ${{ matrix.dockerfile }} .Dockerfile)
           if [ "$BASENAME" = "default" ]; then
-            echo "name=mmtftr/docker-imgs" >> $GITHUB_OUTPUT
+            echo "name=ozdentarikcan/docker-imgs" >> $GITHUB_OUTPUT
           else
-            echo "name=mmtftr/docker-${BASENAME}" >> $GITHUB_OUTPUT
+            echo "name=ozdentarikcan/docker-${BASENAME}" >> $GITHUB_OUTPUT
           fi
 
       - name: Set up Docker Buildx
